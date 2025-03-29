@@ -1,0 +1,140 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh; /* Allows the page to take up full height */
+    overflow: auto; /* Enables scrolling */
+    padding: 20px;
+}
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 20px; /* Adds spacing below container */
+}
+.logincontainer {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 390px;
+    text-align: center;
+    margin-bottom: 20px; /* Adds spacing below container */
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
+/* Labels & Inputs */
+label {
+    font-weight: bold;
+    text-align: left;
+    display: block;
+}
+
+input, select, textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Alternative Buttons */
+.admin-login-btn, .student-login-btn {
+    background-color: #28a745;
+}
+
+.admin-login-btn:hover, .student-login-btn:hover {
+    background-color: #218838;
+}
+
+/* Status Messages */
+p#loginStatus, p#status, p#complaintId, p#complaintStatus {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+/* Complaint List Styling */
+#complaintList {
+    display: flex;
+    flex-direction: column; /* Ensures each complaint appears on a new line */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+.complaint-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    white-space: normal; /* Ensures text wraps normally */
+}
+
+/* Dropdown Styling */
+select {
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+}

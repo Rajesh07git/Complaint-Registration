@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Mess Complaint</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="logincontainer">
+        <h2>Admin Login</h2>
+
+        <form id="adminLoginForm" class="login-form">
+            <div class="input-container">
+                <input type="email" id="adminEmail" placeholder="&#128231; Email" required>
+            </div>
+
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="adminPassword" placeholder="&#128274; Password" required>
+            </div>
+            
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="loginStatus"></p>
+
+        <!-- Student Login Button -->
+        <button onclick="window.location.href='/'" class="student-login-btn">Login as Student</button>
+    </div>
+
+    <script src="../static/script.js" defer></script>
+</body>
+</html>

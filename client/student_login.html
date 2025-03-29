@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Mess Complaint</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="logincontainer">
+        <h2>Student Login</h2>
+
+        <form id="studentLoginForm" class="login-form">
+            <div class="input-container">
+                <input type="email" id="studentEmail" placeholder="&#128231; Enter your NITK Email" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="loginStatus"></p>
+
+        <!-- Admin Login Button -->
+        <button onclick="window.location.href='/admin_login'" class="admin-login-btn">Login as Admin</button>
+    </div>
+
+    <script src="../static/script.js" defer></script>
+</body>
+</html>
