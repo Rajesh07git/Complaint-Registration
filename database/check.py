@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connect to the database
-conn = sqlite3.connect('complaints.db')
+conn = sqlite3.connect('database/complaints.db')
 c = conn.cursor()
 
 # Fetch all complaints
@@ -10,3 +10,4 @@ complaints = c.fetchall()
 
 for complaint in complaints:
     print(complaint)  # This will print each complaint entry in the database
+

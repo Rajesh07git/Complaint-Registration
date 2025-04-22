@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints - NITK Mess Complaint System</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">NITK Mess Complaint System</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/student_dashboard">Dashboard</a></li>
+            <li><a href="/complaint">Submit Complaint</a></li>
+            <li><a href="/complaint_status">Check Status</a></li>
+            <li><a href="/my_complaints" class="active">My Complaints</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>My Complaint History</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">View all your submitted complaints and their current status</p>
+
+        <div id="myComplaintsList" class="complaints-list">
+            <p style="text-align: center; color: var(--gray);">Loading your complaints...</p>
+        </div>
+    </div>
+
+    <script src="../static/script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const email = localStorage.getItem('email');
+            if (!email) {
+                window.location.href = '/student_login';
+                return;
+            }
+            
+            fetch(`/api/student_complaints?email=${encodeURIComponent(email)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const complaintsList = document.getElementById('myComplaintsList');
+                    complaintsList.innerHTML = '';
+                    
+                    if (data.complaints && data.complaints.length > 0) {
+                        data.complaints.forEach(complaint => {
+                            const statusColor = getStatusColorClass(complaint.status);
+                            
+                            const item = document.createElement('div');
+                            item.className = 'complaint-history-item';
+                            item.innerHTML = `
+                                <div class="complaint-header">
+                                    <div>
+                                        <h3>Complaint #${complaint.id}</h3>
+                                        <p class="complaint-meta">
+                                            <span><i class="fas fa-utensils"></i> ${complaint.mess}</span>
+                                            <span><i class="fas fa-calendar"></i> ${complaint.date}</span>
+                                            <span><i class="fas fa-tag"></i> ${complaint.category}</span>
+                                        </p>
+                                    </div>
+                                    <span class="status-badge ${statusColor}">${complaint.status}</span>
+                                </div>
+                                <div class="complaint-body">
+                                    <p>${complaint.description}</p>
+                                </div>
+                            `;
+                            complaintsList.appendChild(item);
+                        });
+                    } else {
+                        complaintsList.innerHTML = `
+                            <div class="no-complaints">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>You haven't submitted any complaints yet.</p>
+                                <button onclick="window.location.href='/complaint'" class="submit-btn">Submit New Complaint</button>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading complaints:', error);
+                    document.getElementById('myComplaintsList').innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Error loading your complaints. Please try again later.</p>
+                        </div>
+                    `;
+                });
+        });
+        
+        function getStatusColorClass(status) {
+            if (status === 'Completed' || status === 'Resolved') return 'status-completed';
+            if (status === 'In Progress') return 'status-progress';
+            return 'status-pending';
+        }
+    </script>
+</body>
+</html>

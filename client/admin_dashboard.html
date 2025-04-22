@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NITK Mess Complaint System</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">NITK Mess Complaint System</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin_dashboard" class="active">Dashboard</a></li>
+            <li><a href="/view_complaints">View All Complaints</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Welcome to the Mess Complaint System Admin Panel</p>
+
+        <div class="dashboard-stats">
+            <div class="stat-card pending">
+                <div class="stat-icon">
+                    <i class="fas fa-clock" style="color: var(--warning);"></i>
+                </div>
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">Pending Complaints</div>
+            </div>
+            
+            <div class="stat-card progress">
+                <div class="stat-icon">
+                    <i class="fas fa-spinner" style="color: var(--primary);"></i>
+                </div>
+                <div class="stat-number" id="progressCount">0</div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            
+            <div class="stat-card resolved">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                </div>
+                <div class="stat-number" id="resolvedCount">0</div>
+                <div class="stat-label">Resolved Complaints</div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="card-title">Manage Food Quality Complaints</div>
+                <div class="card-content">
+                    <p>View and update status of complaints related to food quality, taste, and freshness.</p>
+                    <button onclick="loadCategoryComplaints('Food Quality')" style="width: 100%;">View Complaints</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <div class="card-title">Manage Hygiene Complaints</div>
+                <div class="card-content">
+                    <p>Handle complaints regarding cleanliness, food hygiene, and sanitation in mess areas.</p>
+                    <button onclick="loadCategoryComplaints('Food Hygiene')" style="width: 100%;">View Complaints</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <div class="card-title">Manage Service Complaints</div>
+                <div class="card-content">
+                    <p>Address issues related to mess service, staff behavior, and overall experience.</p>
+                    <button onclick="loadCategoryComplaints('Service')" style="width: 100%;">View Complaints</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="card-title">Manage Timing Complaints</div>
+                <div class="card-content">
+                    <p>Handle complaints about mess timings, food availability, and waiting times.</p>
+                    <button onclick="loadCategoryComplaints('Timing_Availability')" style="width: 100%;">View Complaints</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div class="card-title">Manage Quantity Complaints</div>
+                <div class="card-content">
+                    <p>Address issues regarding food portion sizes and quantity-related concerns.</p>
+                    <button onclick="loadCategoryComplaints('Food Quantity')" style="width: 100%;">View Complaints</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="card-title">View Analytics</div>
+                <div class="card-content">
+                    <p>See detailed analytics on complaint frequency, resolution rate, and common issues.</p>
+                    <button onclick="window.location.href='/analytics'" style="width: 100%;">View Analytics</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/script.js" defer></script>
+    <script>
+        // Function to load the dashboard stats
+        function loadDashboardStats() {
+            fetch('/api/complaint_stats')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('pendingCount').textContent = data.pending || 0;
+                    document.getElementById('progressCount').textContent = data.in_progress || 0;
+                    document.getElementById('resolvedCount').textContent = data.resolved || 0;
+                })
+                .catch(error => console.error('Error loading stats:', error));
+        }
+
+        // Function to redirect to view complaints with a specific category
+        function loadCategoryComplaints(category) {
+            window.location.href = `/view_complaints?category=${encodeURIComponent(category)}`;
+        }
+
+        // Load stats when page loads
+        document.addEventListener('DOMContentLoaded', loadDashboardStats);
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Status - NITK Mess Complaint System</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">NITK Mess Complaint System</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/student_dashboard">Dashboard</a></li>
+            <li><a href="/complaint">Submit Complaint</a></li>
+            <li><a href="/complaint_status" class="active">Check Status</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Check Complaint Status</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Enter your complaint ID to check its current status</p>
+
+        <div class="status-container">
+            <div class="status-form">
+                <div class="form-group">
+                    <label for="complaintIdInput">Complaint ID</label>
+                    <input type="number" id="complaintIdInput" placeholder="Enter your complaint ID" required>
+                </div>
+                <button id="checkStatusButton" class="submit-btn">
+                    <i class="fas fa-search"></i> Check Status
+                </button>
+            </div>
+            
+            <div id="complaintStatus" class="status-display"></div>
+            
+            <div class="status-info">
+                <h3>What do the statuses mean?</h3>
+                <ul>
+                    <li><span class="status-badge status-pending">Pending</span> - Your complaint has been registered and is waiting to be addressed.</li>
+                    <li><span class="status-badge status-progress">In Progress</span> - Your complaint is currently being reviewed and addressed by the mess staff.</li>
+                    <li><span class="status-badge status-completed">Completed</span> - Your complaint has been resolved.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/script.js" defer></script>
+</body>
+</html>

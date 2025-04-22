@@ -3,53 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess Complaint Form</title>
+    <title>Submit Complaint - NITK Mess Complaint System</title>
     <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-logo">NITK Mess Complaint System</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/student_dashboard">Dashboard</a></li>
+            <li><a href="/complaint" class="active">Submit Complaint</a></li>
+            <li><a href="/complaint_status">Check Status</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>Mess Complaint Form</h1>
+        <h1>Submit a New Complaint</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Please provide detailed information about your mess complaint</p>
+
         <div class="form-container">
             <form id="complaintForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" placeholder="Enter your full name" required>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
 
-                <label for="rollNumber">Roll Number:</label>
-                <input type="text" id="rollNumber" placeholder="XXXXXXX" required>
+                <div class="form-group">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" id="rollNumber" name="rollNumber" placeholder="Enter your roll number" required>
+                </div>
 
-                <label for="mess">Select Mess:</label>
-                <select id="mess" required>
-                    <option value="">-- Select --</option>
-                    <option value="Block I (Karavali)">Block I (Karavali)</option>
-                    <option value="Block II (Aravali)">Block II (Aravali)</option>
-                    <option value="Block III (Vindhya)">Block III (Vindhya)</option>
-                    <option value="Block IV (Satpura)">Block IV (Satpura)</option>
-                    <option value="Block V (Nilgiri)">Block V (Nilgiri)</option>
-                    <option value="Block VII (Sahyadri)">Block VII (Sahyadri)</option>
-                    <option value="Block VIII (Trishul)">Block VIII (Trishul)</option>
-                    <option value="Mega mess">Mega Mess</option>
-                    <option value="Girls Block Mess (Annapoorna)">Girls Block Mess (Annapoorna)</option>
-                </select>
+                <div class="form-group">
+                    <label for="mess">Mess Name</label>
+                    <select id="mess" name="mess" required>
+                        <option value="">-- Select --</option>
+                        <option value="Block I (Karavali)">Block I (Karavali)</option>
+                        <option value="Block II (Aravali)">Block II (Aravali)</option>
+                        <option value="Block III (Vindhya)">Block III (Vindhya)</option>
+                        <option value="Block IV (Satpura)">Block IV (Satpura)</option>
+                        <option value="Block V (Nilgiri)">Block V (Nilgiri)</option>
+                        <option value="Block VII (Sahyadri)">Block VII (Sahyadri)</option>
+                        <option value="Block VIII (Trishul)">Block VIII (Trishul)</option>
+                        <option value="Mega mess">Mega Mess</option>
+                        <option value="Girls Block Mess (Annapoorna)">Girls Block Mess (Annapoorna)</option>
+                    </select>
+                </div>
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" required>
+                <div class="form-group">
+                    <label for="date">Date of Incident</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
 
-                <label for="description">Description:</label>
-                <textarea id="description" rows="4" placeholder="Describe your complaint" required></textarea>
+                <div class="form-group">
+                    <label for="description">Complaint Description</label>
+                    <textarea id="description" name="description" rows="6" placeholder="Please describe your complaint in detail. Include specific information like meal time, food items, and the exact nature of the problem." required></textarea>
+                    
+                    <div class="voice-input">
+                        <button type="button" id="startRecording" class="voice-btn">
+                            <i class="fas fa-microphone"></i> Use Voice Input
+                        </button>
+                        <div id="recordingStatus" class="recording-status"></div>
+                    </div>
+                </div>
 
-                <button type="submit">Submit Complaint</button>
+                <div class="form-actions">
+                    <button type="reset" class="reset-btn">Reset Form</button>
+                    <button type="submit" class="submit-btn">Submit Complaint</button>
+                </div>
             </form>
+            
+            <div id="status" class="submission-status"></div>
+            <div id="complaintId" class="complaint-id"></div>
         </div>
-
-        <p id="status"></p>
-        <p id="complaintId"></p>
-
-        <h3>Check Complaint Status</h3>
-        <input type="text" id="complaintIdInput" placeholder="Enter Complaint ID">
-        <button id="checkStatusButton">Check Status</button>
-        <p id="complaintStatus"></p>
-        <button onclick="window.location.href='/logout'">Log Out</button>
     </div>
+
     <script src="../static/script.js" defer></script>
 </body>
 </html>

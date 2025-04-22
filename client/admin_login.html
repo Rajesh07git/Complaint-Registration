@@ -3,31 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Mess Complaint</title>
+    <title>Admin Login - NITK Mess Complaint System</title>
     <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="logincontainer">
-        <h2>Admin Login</h2>
+    <nav class="navbar">
+        <div class="nav-logo">NITK Mess Complaint System</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/student_login">Student Portal</a></li>
+            <li><a href="/admin_login" class="active">Admin Portal</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-        <form id="adminLoginForm" class="login-form">
-            <div class="input-container">
-                <input type="email" id="adminEmail" placeholder="&#128231; Email" required>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h1>Admin Login</h1>
+                <p>Access the administrative dashboard to manage complaints</p>
             </div>
 
-            <div class="input-container">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="adminPassword" placeholder="&#128274; Password" required>
+            <form id="adminLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="adminEmail">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="adminEmail" name="email" placeholder="Enter your admin email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="adminPassword" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <div id="loginStatus" class="message"></div>
+            </form>
+
+            <div class="login-footer">
+                <p>Not an admin? <a href="/student_login">Login as Student</a></p>
             </div>
-            
-            <button type="submit">Login</button>
-        </form>
-
-        <p id="loginStatus"></p>
-
-        <!-- Student Login Button -->
-        <button onclick="window.location.href='/'" class="student-login-btn">Login as Student</button>
+        </div>
     </div>
+
+    <footer style="background: var(--primary-dark); color: white; text-align: center; padding: 1rem 0; margin-top: 3rem;">
+        <p>© 2025 NITK Mess Complaint System | National Institute of Technology Karnataka</p>
+    </footer>
 
     <script src="../static/script.js" defer></script>
 </body>
